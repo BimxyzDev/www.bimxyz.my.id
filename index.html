@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bimxyz Official</title>
+  <title>—͟͞𝘽𝙞𝙢𝙭𝙮𝙯 𝙤𝙛𝙛𝙞𝙘𝙞𝙖𝙡</title>
 
   <!-- SEO Meta -->
   <meta name="title" content="Bimxyz Official">
   <meta name="description" content="Website resmi Bimxyz. Produk terbaik, layanan cepat, aman, dan terpercaya.">
-  <meta name="keywords" content="bimxyz, produk, layanan, official, web panel, hosting">
+  <meta name="keywords" content="bimxyz, produk, layanan, official, web panel, hosting, pembayaran">
   <meta name="author" content="Bimxyz Official">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / WhatsApp Preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.bimxyz.my.id/">
   <meta property="og:title" content="Bimxyz Official">
@@ -19,183 +19,100 @@
   <meta property="og:image" content="https://img1.pixhost.to/images/8841/642621362_rafaofficial.jpg">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+    * {margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
 
-    body { background: #f5f6fa; color: #333; }
+    body {background:#121212;color:#f5f5f5;line-height:1.6;}
 
-    /* Navbar */
     header {
-      background: #111;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      background:#1f1f1f;
+      padding:30px 20px;
+      text-align:center;
+      border-bottom:2px solid #ff9800;
+    }
+    header h1 {font-size:2.2rem;color:#ff9800;}
+    header p {margin-top:10px;color:#ccc;}
+
+    .profile-pic {
+      margin:20px auto 0;
+      width:140px;height:140px;
+      border-radius:50%;object-fit:cover;
+      border:3px solid #ff9800;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+      display:block;
     }
 
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .menu {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+      padding:40px 20px;
+      max-width:1100px;
+      margin:auto;
     }
-
-    .logo img {
-      height: 55px;
-      width: 55px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links .active { color: #ff9800; }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                  url('https://source.unsplash.com/1600x900/?technology,network') center/cover no-repeat;
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      padding: 20px;
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-
-    /* Menu Section */
-    .menu-section {
-      max-width: 1000px;
-      margin: -60px auto 50px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
     .menu-card {
-      background: #fff;
-      padding: 35px 25px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background:#1f1f1f;
+      padding:25px;
+      border-radius:15px;
+      text-align:center;
+      box-shadow:0 4px 15px rgba(0,0,0,0.25);
+      transition:transform 0.3s ease;
     }
-
-    .menu-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .menu-card h3 {
-      margin-bottom: 12px;
-      color: #111;
-      font-size: 1.3rem;
-    }
-
-    .menu-card p {
-      margin-bottom: 18px;
-      color: #666;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
+    .menu-card:hover {transform:translateY(-5px);}
+    .menu-card h2 {color:#ff9800;margin-bottom:10px;}
+    .menu-card p {font-size:0.95rem;color:#bbb;margin-bottom:20px;}
     .menu-card a {
-      display: inline-block;
-      padding: 10px 25px;
-      background: #ff9800;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background 0.3s ease;
+      display:inline-block;
+      padding:14px 35px;
+      background:#ff9800;color:#fff;
+      text-decoration:none;border-radius:30px;
+      font-weight:bold;font-size:1rem;
+      letter-spacing:0.5px;
+      transition:background 0.3s ease,transform 0.2s ease,box-shadow 0.3s ease;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    }
+    .menu-card a:hover {
+      background:#e68900;
+      transform:translateY(-3px);
+      box-shadow:0 6px 15px rgba(0,0,0,0.25);
     }
 
-    .menu-card a:hover { background: #e68900; }
-
-    /* Footer */
     footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 0.9rem;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+      border-top:2px solid #ff9800;
+      color:#aaa;
+      font-size:0.9rem;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <header>
-    <nav class="navbar">
-      <div class="logo">
-        <img src="https://img1.pixhost.to/images/8841/642621362_rafaofficial.jpg" alt="Bimxyz Logo">
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="produk.html">Produk</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="payment.html">Payment</a></li>
-      </ul>
-    </nav>
+    <h1>Selamat Datang di Bimxyz Official</h1>
+    <p>Portal resmi Bimxyz — layanan cepat, aman, dan terpercaya.</p>
+    <img src="https://img1.pixhost.to/images/8841/642621362_rafaofficial.jpg" alt="Foto Profil Bimxyz" class="profile-pic">
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Selamat Datang di Bimxyz Official</h1>
-    <p>Portal resmi Bimxyz. Jelajahi produk, hubungi tim kami, atau lakukan pembayaran dengan aman dan mudah.</p>
-  </section>
-
-  <!-- Menu Tengah -->
-  <section class="menu-section">
+  <section class="menu">
     <div class="menu-card">
-      <h3>Produk</h3>
-      <p>Temukan produk terbaik kami yang dirancang untuk kebutuhan Anda.</p>
+      <h2>Produk</h2>
+      <p>Kami menyediakan berbagai produk berkualitas dengan harga bersaing untuk kebutuhan Anda.</p>
       <a href="produk.html">Lihat Produk</a>
     </div>
     <div class="menu-card">
-      <h3>Contact</h3>
-      <p>Hubungi tim kami untuk pertanyaan, dukungan, atau kerja sama.</p>
-      <a href="contact.html">Hubungi</a>
+      <h2>Kontak</h2>
+      <p>Punya pertanyaan atau butuh bantuan? Hubungi tim kami dengan cepat dan mudah.</p>
+      <a href="kontak.html">Hubungi Kami</a>
     </div>
     <div class="menu-card">
-      <h3>Payment</h3>
-      <p>Kelola pembayaran Anda dengan cepat dan aman melalui sistem kami.</p>
-      <a href="payment.html">Bayar Sekarang</a>
+      <h2>Pembayaran</h2>
+      <p>Nikmati kemudahan pembayaran dengan berbagai metode aman dan terpercaya.</p>
+      <a href="pembayaran.html">Bayar Sekarang</a>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Bimxyz Official. All rights reserved.</p>
+    &copy; 2025 Bimxyz Official. Semua Hak Dilindungi.
   </footer>
 </body>
-  </html>
+</html>
