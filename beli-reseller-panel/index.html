@@ -16,15 +16,14 @@
       flex-direction: column;
       text-align: center;
       transition: all 0.4s ease;
+      margin: 0;
+      padding: 20px;
     }
-    h1 {
-      color: #fff;
-      text-shadow: 0 0 10px #f9d342;
-    }
+    h1 { color: #fff; text-shadow: 0 0 10px #f9d342; }
     .container {
-      width: 90%;
-      max-width: 500px;
-      background: rgba(20, 20, 20, 0.8);
+      width: 100%;
+      max-width: 600px;
+      background: rgba(20, 20, 20, 0.95);
       border: 1px solid #f9d342;
       border-radius: 15px;
       padding: 25px;
@@ -41,27 +40,35 @@
       transition: 0.3s;
       font-weight: bold;
     }
-    button:hover {
-      background: #ffea61;
-      transform: scale(1.05);
-    }
-    input, file {
+    button:hover { background: #ffea61; transform: scale(1.02); }
+    input, .file {
       width: 90%;
-      padding: 8px;
-      margin: 5px 0;
+      padding: 10px;
+      margin: 8px 0;
       border: 1px solid #f9d342;
       border-radius: 8px;
       background: #111;
       color: #f9d342;
       text-align: center;
+      outline: none;
     }
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin: 10px 0;
-    }
+    input::placeholder { color: #f9d342cc; }
+    img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
     .hidden { display: none; }
     .note { font-size: 13px; color: #ffd872; margin-top: 8px; }
+    .small { font-size: 13px; color:#ffd; margin-top:6px; }
+    .center { display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; }
+    pre.snippet {
+      text-align:left;
+      background:#0f0f0f;
+      border:1px dashed #f9d342;
+      padding:10px;
+      border-radius:6px;
+      color:#fff;
+      overflow-x:auto;
+      font-family: monospace;
+      margin-top:10px;
+    }
   </style>
 </head>
 <body>
@@ -72,134 +79,57 @@
       <h2>💎RESELLER PANEL PRIVAT💎</h2>
       Modal cuma 5.000, dapat akun reseller:<br>
       BENEFIT?:<br>
-• Bisa bikin panel sepuasnya<br>
-• Bisa jual panel ke orang lain<br>
-• Permanen, anti PT PT jika vps mokad<br>
-• CREATE PANEL VIA WEBSITE<br>
-• PANEL MEMILIKI PROTECTOR (ANTI INTIP/RUSUH)
-      <button onclick="nextStep(2)">Beli Sekarang</button>
+      • Bisa bikin panel sepuasnya<br>
+      • Bisa jual panel ke orang lain<br>
+      • Permanen, anti PT PT jika vps mokad<br>
+      • CREATE PANEL VIA WEBSITE<br>
+      • PANEL MEMILIKI PROTECTOR (ANTI INTIP/RUSUH)
+      <div class="center"><button id="buyBtn">Beli Sekarang</button></div>
     </div>
 
     <div id="step2" class="hidden">
       <h2>Buat Data Akun Panel</h2>
-      <input type="text" id="username" placeholder="Masukkan Username CPanel" required><br>
-      <input type="password" id="password" placeholder="Masukkan Password CPanel" required><br>
-      <input type="text" id="telegram" placeholder="Masukkan Username Telegram" required><br>
-      <button onclick="nextStep(3)">Lanjut ke Pembayaran</button>
+      <input type="text" id="username" placeholder="Masukkan Username CPanel (contoh: bimastore)"><br>
+      <input type="password" id="password" placeholder="Masukkan Password CPanel"><br>
+      <input type="text" id="telegram" placeholder="Masukkan Username Telegram (tanpa @ atau dengan @)"><br>
+      <div class="center">
+        <button id="backTo1">Kembali</button>
+        <button id="toPayment">Lanjut ke Pembayaran</button>
+      </div>
     </div>
 
     <div id="step3" class="hidden">
       <h2>Pembayaran via QRIS</h2>
       <p>Silakan scan QRIS di bawah ini dan lakukan pembayaran SEBESAR Rp 5.000 (5K):</p>
       <img src="https://img1.pixhost.to/images/9676/654924522_imgtmp.jpg" alt="QRIS">
-      <input type="file" id="bukti" accept="image/*" />
+      <input class="file" type="file" id="bukti" accept="image/*" />
       <div class="note">Pastikan foto bukti jelas. Setelah kirim, admin akan verifikasi secara manual.</div>
-      <button id="sendBtn" onclick="sendToTelegram()">Kirim Bukti Pembayaran</button>
+      <div class="center">
+        <button id="backTo2">Kembali</button>
+        <button id="sendBtn">Kirim Bukti Pembayaran</button>
+      </div>
     </div>
 
     <div id="step4" class="hidden">
       <h2>Menunggu Proses Pembuatan Akun</h2>
-      <p>
+      <p class="small">
         Terima kasih! Data Anda telah dikirim.<br>
         Mohon menunggu proses pembuatan akun CPanel.<br><br>
         Silakan bergabung ke grup Telegram untuk mendapatkan update lebih lanjut.
       </p>
-      <button id="groupBtn">Masuk ke Grup Telegram</button>
+      <div class="center">
+        <button id="groupBtn">Masuk ke Grup Telegram</button>
+      </div>
+    </div>
+
+    <div id="debug" class="hidden">
+      <h3>Snippet (siap di-copy):</h3>
+      <pre id="snippetBox" class="snippet"></pre>
+      <div class="center"><button id="copyBtn">Copy Snippet</button></div>
     </div>
   </div>
 
-  <!-- Load YANTO token/chat config (edit isi file api/yanto.js) -->
-  <script src="/api/yanto.js"></script>
-
-  <script>
-    // NOTE: YANTO must be defined in api/yanto.js
-    function nextStep(num) {
-      document.querySelectorAll(".container > div").forEach(div => div.classList.add("hidden"));
-      document.getElementById("step" + num).classList.remove("hidden");
-    }
-
-    async function sendToTelegram() {
-      // ensure YANTO exists
-      if (!window.YANTO || !window.YANTO.TOKEN_BOT || !window.YANTO.CHAT_ID) {
-        alert("Konfigurasi token/chat tidak ditemukan. Isi file api/yanto.js terlebih dahulu.");
-        return;
-      }
-
-      const BOT_TOKEN = window.YANTO.TOKEN_BOT;
-      const CHAT_ID = window.YANTO.CHAT_ID;
-      const GROUP_LINK = "https://t.me/+IPAh_u5yY7Y2MTk1"; // keep as-is or move to YANTO if perlu
-
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const telegram = document.getElementById("telegram").value.trim();
-      const fileInput = document.getElementById("bukti");
-      const sendBtn = document.getElementById("sendBtn");
-
-      if (!username || !password || !telegram || !fileInput.files[0]) {
-        alert("Harap isi semua data dan unggah bukti pembayaran!");
-        return;
-      }
-
-      sendBtn.disabled = true;
-      sendBtn.textContent = "Mengirim...";
-
-      // caption for photo
-      const caption = `
-🪪 Data Pembelian Reseller Panel
-👤 Username: ${username}
-🔑 Password: ${password}
-💬 Telegram: ${telegram.startsWith('@') ? telegram : '@' + telegram}
-🧾 Status: Menunggu verifikasi admin
-      `;
-
-      try {
-        // 1) send photo with caption
-        const formData = new FormData();
-        formData.append("chat_id", CHAT_ID);
-        formData.append("caption", caption);
-        formData.append("photo", fileInput.files[0]);
-        formData.append("parse_mode", "Markdown");
-
-        const sendPhotoRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-          method: "POST",
-          body: formData
-        });
-        const sendPhotoJson = await sendPhotoRes.json();
-
-        if (!sendPhotoJson.ok) {
-          throw new Error("Gagal kirim photo: " + JSON.stringify(sendPhotoJson));
-        }
-
-        // 2) send an extra message that is easy to copy (code snippet)
-        // The snippet format the user requested: { username: "USERNAME_LU", password: "PASSWORD_LU" }
-        const snippet = `{ username: "${username}", password: "${password}" }`;
-        const msgBody = new URLSearchParams();
-        msgBody.append("chat_id", CHAT_ID);
-        msgBody.append("text", snippet);
-
-        const sendMsgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: msgBody.toString()
-        });
-        const sendMsgJson = await sendMsgRes.json();
-        if (!sendMsgJson.ok) {
-          // non-fatal, but notify
-          console.warn("Gagal kirim snippet:", sendMsgJson);
-        }
-
-        // success: go to step 4
-        nextStep(4);
-        document.getElementById("groupBtn").onclick = () => { window.open(GROUP_LINK, "_blank"); };
-        alert("Bukti terkirim. Tunggu verifikasi admin.");
-      } catch (err) {
-        console.error(err);
-        alert("Error saat mengirim bukti: " + (err.message || err));
-      } finally {
-        sendBtn.disabled = false;
-        sendBtn.textContent = "Kirim Bukti Pembayaran";
-      }
-    }
-  </script>
+  <!-- load external JS -->
+  <script src="app.js"></script>
 </body>
-  </html>
+</html>
