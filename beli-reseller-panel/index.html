@@ -179,10 +179,9 @@ function beliUnlimited() {
     }
 
     const pesan = `*INFO PEMBELIAN PANEL UNLIMITED*
-Role: User
-Username: ${username}
+*Username:* ${username}
 *Total harga:* Rp 5.000
-Metode pembayaran: QRIS`;
+*Metode pembayaran:* QRIS`;
 
     window.location.href =
         `https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`;
