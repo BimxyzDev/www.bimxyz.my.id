@@ -3,222 +3,671 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beli Reseller Panel</title>
+<title>Reseller Panel — Beli Akses Panel Lengkap</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        background: #0a0a0a;
-        color: #fff;
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
+:root {
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --primary-dark: #3a0ca3;
+  --secondary: #7209b7;
+  --accent: #f72585;
+  --success: #4cc9f0;
+  --dark-bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --text-light: #cbd5e1;
+  --border: #334155;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
 
-    h2 {
-        color: #1e90ff;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .card {
-        background: #131313;
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #222;
-    }
+body {
+  background: var(--dark-bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+}
 
-    button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        background: #1e90ff;
-        color: white;
-        cursor: pointer;
-        margin-top: 10px;
-    }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    button:hover {
-        background: #187bcd;
-    }
+/* ========== HEADER ========== */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: var(--gradient);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
 
-    input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 8px;
-        border-radius: 6px;
-        border: 1px solid #333;
-        background: #0f0f0f;
-        color: white;
-    }
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: float 20s linear infinite;
+  opacity: 0.3;
+}
 
-    #formUser,
-    #formUnlimited {
-        display: none;
-        margin-top: 10px;
-    }
+@keyframes float {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  position: relative;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header .tagline {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+}
+
+/* ========== BENEFITS SECTION ========== */
+.benefits {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.benefits h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.benefit-item i {
+  color: var(--success);
+  font-size: 1.5rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ========== PRICING CARDS ========== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.pricing-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.card-header {
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header.unlimited {
+  background: linear-gradient(135deg, #7209b7, #3a0ca3);
+}
+
+.card-header.user {
+  background: linear-gradient(135deg, #4361ee, #4895ef);
+}
+
+.card-header.admin {
+  background: linear-gradient(135deg, #f72585, #7209b7);
+}
+
+.card-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.card-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.card-period {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.pricing-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.features-list {
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+.features-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+.features-list li i {
+  color: var(--success);
+  font-size: 0.9rem;
+}
+
+.buy-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--gradient);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buy-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+}
+
+/* ========== FORMS ========== */
+.purchase-form {
+  display: none;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  margin-top: 20px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  margin-top: 50px;
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .card-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .card-price {
+    font-size: 2rem;
+  }
+}
 </style>
-
 </head>
 <body>
 
-<h2>⚡ 𝐎𝐏𝐄𝐍 𝐑𝐄𝐒𝐄𝐋𝐋𝐄𝐑 𝐏𝐀𝐍𝐄𝐋 — 𝐅𝐔𝐋𝐋 𝐀𝐊𝐒𝐄𝐒 𝐁𝐑𝐎𝐎𝐎 😎⚡</h2>
+<div class="container">
+  <!-- HEADER -->
+  <header class="header">
+    <h1><i class="fas fa-bolt"></i> OPEN RESELLER PANEL</h1>
+    <p class="tagline">Full Akses Panel — Modal Receh, Untung Ga Receh!</p>
+    <div class="badge">
+      <i class="fas fa-shield-alt"></i> Server Milik Admin Sendiri
+    </div>
+  </header>
 
-<p>
-    𝐂𝐏𝐀𝐍𝐄𝐋 𝐕𝐈𝐀 𝐖𝐄𝐁𝐒𝐈𝐓𝐄 — 𝐌𝐎𝐃𝐀𝐋 𝐑𝐄𝐂𝐄𝐇, 𝐔𝐍𝐓𝐔𝐍𝐆 𝐆𝐀 𝐑𝐄𝐂𝐄𝐇‼️
-    <br><br>
+  <!-- BENEFITS -->
+  <section class="benefits">
+    <h2><i class="fas fa-star"></i> Kenapa Harus Server Kita?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <i class="fas fa-bolt"></i>
+        <div>
+          <h4>Anti Delay & Lag</h4>
+          <p>Server kencang dan stabil 24/7</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <i class="fas fa-shield-alt"></i>
+        <div>
+          <h4>Keamanan Terjamin</h4>
+          <p>Anti rusuh, anti intip, anti colong</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <i class="fas fa-server"></i>
+        <div>
+          <h4>Server Pribadi</h4>
+          <p>Milik admin sendiri, bukan shared server</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <i class="fas fa-code"></i>
+        <div>
+          <h4>Full Support</h4>
+          <p>Support Node.js v1-24 & berbagai framework</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div style="width:100%; text-align:center; margin:10px 0;">
-        <img src="https://img1.pixhost.to/images/10608/667489572_ochobot.jpg"
-             alt="Gambar"
-             style="max-width:100%; height:auto; border-radius:10px;">
+  <!-- PRICING -->
+  <div class="pricing-grid">
+    <!-- PANEL UNLIMITED -->
+    <div class="pricing-card">
+      <div class="card-header unlimited">
+        <div class="card-badge">POPULAR</div>
+        <h3>Panel Unlimited</h3>
+        <div class="card-price">Rp 5.000</div>
+        <div class="card-period">One-time Payment</div>
+      </div>
+      <div class="card-image">
+        <img src="https://img1.pixhost.to/images/10699/668961714_ochobot.jpg" alt="Panel Unlimited">
+      </div>
+      <div class="card-body">
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> RAM/Disk/CPU Unlimited</li>
+          <li><i class="fas fa-check"></i> Anti lag & anti limit</li>
+          <li><i class="fas fa-check"></i> Cocok bot berat / multi-device</li>
+          <li><i class="fas fa-check"></i> Aktif 20-30 hari</li>
+          <li><i class="fas fa-check"></i> Support Node.js v1-24</li>
+          <li><i class="fas fa-check"></i> Garansi 15 hari (2x replace)</li>
+        </ul>
+        <button class="buy-btn" onclick="toggleForm('unlimited')">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+        <div id="formUnlimited" class="purchase-form">
+          <div class="form-group">
+            <label for="unliUsername"><i class="fas fa-user"></i> Username</label>
+            <input type="text" id="unliUsername" placeholder="Masukkan username">
+          </div>
+          <button class="buy-btn" onclick="beliUnlimited()">
+            <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
+          </button>
+        </div>
+      </div>
     </div>
 
-    🚀 𝐊𝐄𝐍𝐀𝐏𝐀 𝐇𝐀𝐑𝐔𝐒 𝐒𝐄𝐑𝐕𝐄𝐑 𝐊𝐈𝐓𝐀?<br>
-    ✓ Anti delay<br>
-    ✓ Anti rusuh / anti intip / anti colong<br>
-    ✓ Server milik admin sendiri<br>
-    ✓ Stabil, anti lag<br>
-    ✓ Sepi kaya hati lu 😒😹<br>
-    ✓ Stabil & kenceng 📡🔥<br>
-    ✓ Support nodejs v1-24<br>
-    ✓ Intinya: JOIN dulu baru tau kerennya 🔥<br><br><br>
-</p>
-
-<!-- PANEL UNLIMITED -->
-<div class="card">
-    <h3>🔥 𝐏𝐀𝐍𝐄𝐋 𝐑𝐀𝐌 𝐔𝐍𝐋𝐈𝐌𝐈𝐓𝐄𝐃 — 𝟓.𝟎𝟎𝟎 (𝟓𝐊)</h3>
-
-    <img src="https://img1.pixhost.to/images/10699/668961714_ochobot.jpg"
-         alt="Gambar"
-         style="max-width:100%; height:auto; border-radius:10px;">
-
-    <p>
-        ✓ RAM/Disk/CPU Unlimited<br>
-        ✓ Anti lag / anti limit<br>
-        ✓ Cocok buat bot berat / multi-device<br>
-        ✓ Stabil & kenceng 📡🔥<br>
-        ✓ Aktif 20-30 hari<br>
-        ✓ Support nodejs v1-24<br>
-        ✓ Bergaransi (15 hari 2x replace)
-    </p>
-
-    <button onclick="showUnlimitedForm()">Beli Sekarang</button>
-
-    <div id="formUnlimited">
-        <input type="text" id="unliUsername" placeholder="Masukkan Username">
-        <button onclick="beliUnlimited()">Beli Sekarang</button>
+    <!-- USER PANEL -->
+    <div class="pricing-card">
+      <div class="card-header user">
+        <div class="card-badge">RECOMMENDED</div>
+        <h3>Akses User reseller</h3>
+        <div class="card-price">Rp 8.000</div>
+        <div class="card-period">Full Akses Web Panel</div>
+      </div>
+      <div class="card-image">
+        <img src="https://img1.pixhost.to/images/10608/667497129_ochobot.jpg" alt="Akses User">
+      </div>
+      <div class="card-body">
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> Akses akun cpanel via website</li>
+          <li><i class="fas fa-check"></i> Stabil & kencang 24/7</li>
+          <li><i class="fas fa-check"></i> Support Node.js v1-24</li>
+          <li><i class="fas fa-check"></i> Bisa jualan panel</li>
+          <li><i class="fas fa-check"></i> Open sewa bot / jasa digital</li>
+          <li><i class="fas fa-check"></i> Management user mudah</li>
+        </ul>
+        <button class="buy-btn" onclick="toggleForm('user')">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+        <div id="formUser" class="purchase-form">
+          <div class="form-group">
+            <label for="username"><i class="fas fa-user"></i> Username</label>
+            <input type="text" id="username" placeholder="Masukkan username">
+          </div>
+          <div class="form-group">
+            <label for="password"><i class="fas fa-key"></i> Password</label>
+            <input type="text" id="password" placeholder="Masukkan password">
+          </div>
+          <button class="buy-btn" onclick="beliUser()">
+            <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
+          </button>
+        </div>
+      </div>
     </div>
-</div>
 
-<!-- USER PANEL -->
-<div class="card">
-    <h3>💼 𝐀𝐊𝐒𝐄𝐒 𝐔𝐒𝐄𝐑 — 𝟖.𝟎𝟎𝟎 (𝟖𝐊)</h3>
-
-    <img src="https://img1.pixhost.to/images/10608/667497129_ochobot.jpg"
-         alt="Gambar"
-         style="max-width:100%; height:auto; border-radius:10px;">
-
-    <p>
-        ✓ Dapat akses akun cpanel via website<br>
-        ✓ Stabil & kenceng 📡🔥<br>
-        ✓ Support nodejs v1-24<br>
-        ✓ Bisa jualan panel<br>
-        ✓ Bisa open sewa bot / jasa digital.<br>
-    </p>
-
-    <button onclick="showUserForm()">Beli Sekarang</button>
-
-    <div id="formUser">
-        <input type="text" id="username" placeholder="Masukkan Username">
-        <input type="text" id="password" placeholder="Masukkan Password">
-        <button onclick="beliUser()">Beli Sekarang</button>
+    <!-- ADMIN PANEL -->
+    <div class="pricing-card">
+      <div class="card-header admin">
+        <div class="card-badge">PREMIUM</div>
+        <h3>Akses Admin Reseller Panel</h3>
+        <div class="card-price">Rp 15.000</div>
+        <div class="card-period">Sultan Features</div>
+      </div>
+      <div class="card-image">
+        <img src="https://img1.pixhost.to/images/10729/669388407_ochobot.jpg" alt="Akses Admin">
+      </div>
+      <div class="card-body">
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> Full akses admin website cpanel</li>
+          <li><i class="fas fa-check"></i> Bikin akun reseller sendiri</li>
+          <li><i class="fas fa-check"></i> Open reseller panel</li>
+          <li><i class="fas fa-check"></i> Management user lengkap</li>
+          <li><i class="fas fa-check"></i> Bisa jualan panel & bot</li>
+          <li><i class="fas fa-check"></i> Priority support 24/7</li>
+          <li><i class="fas fa-check"></i> Access to all features</li>
+        </ul>
+        <button class="buy-btn" onclick="beliAdmin()">
+          <i class="fas fa-crown"></i> Beli Sekarang
+        </button>
+      </div>
     </div>
-</div>
+  </div>
 
-<!-- ADMIN PANEL -->
-<div class="card">
-    <h3>👑 𝐀𝐊𝐒𝐄𝐒 𝐀𝐃𝐌𝐈𝐍 — 𝟏𝟓.𝟎𝟎𝟎 (𝟏𝟓𝐊)</h3>
-
-    <img src="https://img1.pixhost.to/images/10608/667498471_ochobot.jpg"
-         alt="Gambar"
-         style="max-width:100%; height:auto; border-radius:10px;">
-
-    <p>
-        𝐀𝐤𝐬𝐞𝐬 𝐒𝐮𝐥𝐭𝐚𝐧, 𝐟𝐢𝐭𝐮𝐫 𝐥𝐞𝐧𝐠𝐤𝐚𝐩 🤌<br>
-        ✓ Full akses admin website cpanel<br>
-        ✓ Bisa bikin akun reseller sendiri<br>
-        ✓ Bisa open reseller panel<br>
-        ✓ Stabil & kenceng 📡🔥<br>
-        ✓ Support nodejs v1-24<br>
-        ✓ Bisa jualan panel<br>
-        ✓ Bisa open sewa bot / jasa digital.<br>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><i class="fas fa-info-circle"></i> Semua pembelian mendapatkan support via WhatsApp</p>
+    <a href="https://wa.me/6285797133997" class="whatsapp-btn" target="_blank">
+      <i class="fab fa-whatsapp"></i> Hubungi Admin
+    </a>
+    <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">
+      © 2024 Bimxyz Official. All rights reserved.
     </p>
-
-    <button onclick="beliAdmin()">Beli Sekarang</button>
+  </footer>
 </div>
 
 <script>
 const admin = "6285797133997";
 
-// Tampilkan form
-function showUserForm() {
-    document.getElementById("formUser").style.display = "block";
-}
-
-function showUnlimitedForm() {
-    document.getElementById("formUnlimited").style.display = "block";
+// Toggle form visibility
+function toggleForm(type) {
+  const forms = document.querySelectorAll('.purchase-form');
+  forms.forEach(form => form.style.display = 'none');
+  
+  if (type === 'unlimited') {
+    document.getElementById('formUnlimited').style.display = 'block';
+    document.getElementById('unliUsername').focus();
+  } else if (type === 'user') {
+    document.getElementById('formUser').style.display = 'block';
+    document.getElementById('username').focus();
+  }
 }
 
 // Pembelian Unlimited
 function beliUnlimited() {
-    const username = document.getElementById("unliUsername").value.trim();
-
-    if (!username) {
-        alert("Username harus diisi!");
-        return;
-    }
-
-    const pesan = `*INFO PEMBELIAN PANEL UNLIMITED*
-*Username:* ${username}
-*Total harga:* Rp 5.000
-*Metode pembayaran:* QRIS`;
-
-    window.location.href =
-        `https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`;
+  const username = document.getElementById('unliUsername').value.trim();
+  
+  if (!username) {
+    alert('Harap masukkan username!');
+    document.getElementById('unliUsername').focus();
+    return;
+  }
+  
+  const message = `*🏷️ PEMBELIAN PANEL UNLIMITED*
+  
+👤 *Username:* ${username}
+💰 *Harga:* Rp 5.000
+📦 *Paket:* Panel Unlimited RAM
+📅 *Durasi:* 20-30 hari
+🛡️ *Garansi:* 15 hari (2x replace)
+  
+💳 *Metode Pembayaran:* QRIS
+📲 *Silakan lanjutkan pembayaran via WhatsApp*`;
+  
+  window.open(`https://wa.me/${admin}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 // Pembelian User
 function beliUser() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    if (!username || !password) {
-        alert("Username dan Password harus diisi!");
-        return;
-    }
-
-    const pesan = `_*INFO PEMBELIAN RESELLER PANEL*_
-Role: User
-*Username:* ${username}
-*Password:* ${password}
-*Total harga:* Rp 8.000
-*Metode pembayaran:* QRIS`;
-
-    window.location.href =
-        `https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`;
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+  
+  if (!username || !password) {
+    alert('Harap lengkapi username dan password!');
+    return;
+  }
+  
+  const message = `*🏷️ PEMBELIAN AKSES RESELLER PANEL*
+  
+👤 *Username:* ${username}
+🔑 *Password:* ${password}
+💰 *Harga:* Rp 8.000
+📦 *Paket:* Akses Reseller Panel
+🎯 *Fitur:* Full Web Panel Access
+  
+💳 *Metode Pembayaran:* QRIS
+📲 *Silakan lanjutkan pembayaran via WhatsApp*`;
+  
+  window.open(`https://wa.me/${admin}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 // Pembelian Admin
 function beliAdmin() {
-    const pesan = `*INFO PEMBELIAN RESELLER PANEL*
-*Role:* Admin
-*Total harga:* Rp 15.000
-*Metode pembayaran:* QRIS`;
-
-    window.location.href =
-        `https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`;
+  const message = `*🏷️ PEMBELIAN AKSES ADMIN RESELLER PANEL*
+  
+👑 *Paket:* Akses Admin Sultan
+💰 *Harga:* Rp 15.000
+⚡ *Fitur:* Full Admin Access
+🔧 *Termasuk:* Management Panel Lengkap
+🌟 *Bonus:* Priority Support 24/7
+  
+💳 *Metode Pembayaran:* QRIS
+📲 *Silakan lanjutkan pembayaran via WhatsApp*`;
+  
+  window.open(`https://wa.me/${admin}?text=${encodeURIComponent(message)}`, '_blank');
 }
+
+// Close form when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.purchase-form') && 
+      !event.target.closest('.buy-btn') &&
+      !event.target.closest('.pricing-card .buy-btn')) {
+    const forms = document.querySelectorAll('.purchase-form');
+    forms.forEach(form => form.style.display = 'none');
+  }
+});
+
+// Add animation to cards on load
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.pricing-card');
+  cards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 100 * index);
+  });
+});
 </script>
 
 </body>
-    </html>
+          </html>
