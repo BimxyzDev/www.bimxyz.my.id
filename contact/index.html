@@ -2,116 +2,324 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Kontak Resmi Bimxyz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>Kontak Resmi Bimxyz - Hubungi Kami</title>
   <style>
+    /* Reset & Base */
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0d0d0d;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%);
       color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden; /* biar ga geser kanan kiri */
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Navbar */
+    /* Enhanced Navbar */
     .navbar {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
-      background: #111;
-      padding: 15px;
-      box-shadow: 0 0 10px #00ffcc33;
+      gap: 25px;
+      background: rgba(17, 17, 17, 0.95);
+      padding: 18px 15px;
+      box-shadow: 0 4px 20px rgba(0, 255, 204, 0.15);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0, 255, 204, 0.1);
     }
+    
     .navbar a {
       color: #00ffcc;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 6px;
+      position: relative;
     }
+    
     .navbar a:hover {
-      color: #fff;
-      text-shadow: 0 0 5px #00ffcc;
+      color: #ffffff;
+      background: rgba(0, 255, 204, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #00ffcc;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .navbar a:hover::after {
+      width: 70%;
     }
 
-    /* Konten tengah */
+    /* Main Content */
     .content-wrapper {
-      flex: 1; /* biar ngisi ruang antara navbar dan footer */
+      flex: 1;
       display: flex;
-      align-items: center; /* vertikal tengah */
-      justify-content: center; /* horizontal tengah */
-      padding: 20px;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
       width: 100%;
-      box-sizing: border-box;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .container {
-      max-width: 500px;
+      max-width: 600px;
       width: 100%;
-      background-color: #1a1a1a;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 0 15px rgba(0,255,204,0.2);
+      background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(20, 20, 20, 0.95));
+      border-radius: 16px;
+      padding: 40px 35px;
+      box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(0, 255, 204, 0.1),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #00ffcc, #008f56, #00ffcc);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite linear;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Profile Image */
     .profile-img {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 20px auto;
       display: block;
-      box-shadow: 0 0 8px #00ffcc55;
+      box-shadow: 
+        0 0 20px rgba(0, 255, 204, 0.4),
+        0 0 40px rgba(0, 255, 204, 0.2);
+      border: 3px solid rgba(0, 255, 204, 0.3);
+      transition: transform 0.5s ease;
     }
 
+    .profile-img:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
+    /* Typography */
     h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
       color: #00ffcc;
-      text-shadow: 0 0 10px #00ffcc;
+      text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+      letter-spacing: 0.5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      width: 60px;
+      height: 3px;
+      background: #00ffcc;
+      transform: translateX(-50%);
+      border-radius: 2px;
     }
 
     .desc {
-      font-size: 14px;
-      color: #bbb;
-      margin-bottom: 25px;
-      line-height: 1.6;
+      font-size: 15px;
+      color: #cccccc;
+      margin-bottom: 35px;
+      line-height: 1.7;
+      padding: 0 10px;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* Tombol diperbaiki supaya semua di tengah */
+    /* Enhanced Buttons */
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+
     .button {
-      display: inline-block;       /* supaya margin auto bekerja */
-      min-width: 200px;            /* opsional, supaya tombol tidak terlalu kecil */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      background-color: #00b36b;
+      background: linear-gradient(to right, #00b36b, #008f56);
       color: white;
-      padding: 14px 20px;
+      padding: 16px 24px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 15px;
-      font-weight: 500;
-      margin: 10px auto;           /* auto kiri & kanan supaya tombol di tengah */
+      font-weight: 600;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 0 8px #00ffcc55;
-      transition: 0.3s;
-    }
-    .button:hover {
-      background-color: #008f56;
-      box-shadow: 0 0 12px #00ffcc;
+      box-shadow: 
+        0 4px 10px rgba(0, 179, 107, 0.3),
+        0 0 0 1px rgba(0, 255, 204, 0.2);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      min-height: 55px;
     }
 
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 8px 20px rgba(0, 179, 107, 0.4),
+        0 0 0 1px rgba(0, 255, 204, 0.3);
+      background: linear-gradient(to right, #00cc7a, #00a35c);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+
+    .button:hover::before {
+      left: 100%;
+    }
+
+    /* Platform-specific button colors */
+    .button:nth-child(1) { background: linear-gradient(to right, #25D366, #128C7E); }
+    .button:nth-child(1):hover { background: linear-gradient(to right, #2fe878, #1aa992); }
+    
+    .button:nth-child(2) { background: linear-gradient(to right, #25D366, #128C7E); }
+    .button:nth-child(2):hover { background: linear-gradient(to right, #2fe878, #1aa992); }
+    
+    .button:nth-child(4) { background: linear-gradient(to right, #0088cc, #006699); }
+    .button:nth-child(4):hover { background: linear-gradient(to right, #0099e6, #0077b3); }
+    
+    .button:nth-child(9) { background: linear-gradient(to right, #000000, #333333); }
+    .button:nth-child(9):hover { background: linear-gradient(to right, #1a1a1a, #404040); }
+    
+    .button:nth-child(10) { background: linear-gradient(to right, #E4405F, #C13584); }
+    .button:nth-child(10):hover { background: linear-gradient(to right, #f56085, #d62976); }
+
+    /* Footer */
     footer {
       font-size: 14px;
-      color: #aaa;
+      color: #888;
       text-align: center;
-      padding: 15px;
-      background: #111;
+      padding: 20px 15px;
+      background: rgba(17, 17, 17, 0.9);
+      border-top: 1px solid rgba(0, 255, 204, 0.1);
+      margin-top: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    footer::before {
+      content: "• • •";
+      letter-spacing: 10px;
+      display: block;
+      margin-bottom: 10px;
+      color: #00ffcc;
+      opacity: 0.5;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        gap: 15px;
+        padding: 15px 10px;
+      }
+      
+      .navbar a {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      
+      .container {
+        padding: 30px 20px;
+        margin: 0 15px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .desc {
+        font-size: 14px;
+        padding: 0;
+      }
+      
+      .buttons-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      .button {
+        padding: 14px 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-img {
+        width: 90px;
+        height: 90px;
+      }
+      
+      h1 {
+        font-size: 22px;
+      }
+      
+      .container {
+        padding: 25px 15px;
+      }
     }
   </style>
 </head>
@@ -119,9 +327,9 @@
 
 <!-- Navbar -->
 <nav class="navbar">
-  <a href="index.html">Home</a>
-  <a href="produk.html">Produk</a>
-  <a href="payment.html">Payment</a>
+  <a href="index.html">🏠 Home</a>
+  <a href="produk.html">📦 Produk</a>
+  <a href="payment.html">💳 Payment</a>
 </nav>
 
 <!-- Konten Tengah -->
@@ -131,19 +339,21 @@
     <h1>Bimxyz Official</h1>
     <p class="desc">
       Selamat datang di halaman kontak resmi Bimxyz Official.  
-      Silakan hubungi kami melalui platform berikut:
+      Hubungi kami melalui platform berikut untuk informasi, transaksi, dan dukungan.
     </p>
 
-    <a href="https://chat.whatsapp.com/L0SuY9XpJg01lO2zTWUmzh" class="button">Grub transaksi</a>
-    <a href="https://wa.me/6285607920486" class="button">WhatsApp utama</a>
-    <a href="https://wa.me/6285797133997" class="button">WhatsApp Cadangan 1</a>
-    <a href="https://t.me/SilentExcution" class="button">Telegram</a>
-    <a href="https://chat.whatsapp.com/BuMum0qkZdkIKer75pqKUK" class="button">Marketplace</a>
-    <a href="https://whatsapp.com/channel/0029Vb6GeW8EVccIpoJTWG3s" class="button">Channel WA - Informasi</a>
-    <a href="https://whatsapp.com/channel/0029Vb6w2Vf65yDE1ww29e0X" class="button">Channel WA - Testimoni</a>
-    <a href="https://whatsapp.com/channel/0029VbAtkqj5K3zTcQFYCp3V" class="button">Free SC Bot</a>
-    <a href="https://tiktok.com/@bimxyz.ferarri" class="button">TikTok Resmi</a>
-    <a href="https://www.instagram.com/bimxyzoffc?igsh=ODgzNnJzc2Z4MzJi" class="button">Instagram Bisnis</a>
+    <div class="buttons-grid">
+      <a href="https://chat.whatsapp.com/L0SuY9XpJg01lO2zTWUmzh" class="button">💬 Grub Transaksi</a>
+      <a href="https://wa.me/6285607920486" class="button">📱 WhatsApp Utama</a>
+      <a href="https://wa.me/6285797133997" class="button">📲 WhatsApp Cadangan 1</a>
+      <a href="https://t.me/SilentExcution" class="button">✈️ Telegram</a>
+      <a href="https://chat.whatsapp.com/BuMum0qkZdkIKer75pqKUK" class="button">🛒 Marketplace</a>
+      <a href="https://whatsapp.com/channel/0029Vb6GeW8EVccIpoJTWG3s" class="button">📢 Channel WA - Informasi</a>
+      <a href="https://whatsapp.com/channel/0029Vb6w2Vf65yDE1ww29e0X" class="button">⭐ Channel WA - Testimoni</a>
+      <a href="https://whatsapp.com/channel/0029VbAtkqj5K3zTcQFYCp3V" class="button">🤖 Free SC Bot</a>
+      <a href="https://tiktok.com/@bimxyz.ferarri" class="button">🎵 TikTok Resmi</a>
+      <a href="https://www.instagram.com/bimxyzoffc?igsh=ODgzNnJzc2Z4MzJi" class="button">📸 Instagram Bisnis</a>
+    </div>
   </div>
 </div>
 
