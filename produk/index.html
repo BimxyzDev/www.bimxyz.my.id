@@ -18,6 +18,7 @@
       --glow-primary: 0 0 15px rgba(0, 255, 204, 0.7);
       --glow-secondary: 0 0 10px rgba(255, 193, 7, 0.5);
       --transition: all 0.3s ease;
+      --success: #4CAF50;
     }
     
     * {
@@ -132,6 +133,48 @@
       width: 70%;
     }
     
+    /* Cart Button */
+    .cart-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: var(--dark-bg);
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--glow-primary);
+      z-index: 1000;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cart-btn:hover {
+      transform: scale(1.1);
+      background: var(--secondary);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--secondary);
+      color: var(--dark-bg);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
     /* Product Container */
     .product-container {
       display: grid;
@@ -203,32 +246,71 @@
       line-height: 1.7;
     }
     
-    .product ul {
-      padding-left: 20px;
-      margin: 10px 0;
-      color: #ccc;
+    /* Product Options */
+    .product-options {
+      margin: 15px 0;
     }
     
-    .product li {
-      margin-bottom: 8px;
-      position: relative;
+    .option-group {
+      margin-bottom: 10px;
     }
     
-    .product li::marker {
+    .option-group label {
+      display: block;
+      margin-bottom: 5px;
       color: var(--primary);
+      font-weight: 600;
     }
     
-    .product .price {
-      color: var(--secondary);
-      margin-top: 10px;
-      font-weight: 800;
-      font-size: 1.3rem;
-      padding: 8px 15px;
-      background: rgba(255, 193, 7, 0.1);
+    .option-select {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 204, 0.3);
       border-radius: 6px;
-      text-align: center;
-      box-shadow: var(--glow-secondary);
-      border: 1px solid rgba(255, 193, 7, 0.2);
+      color: var(--light-text);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    
+    .option-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0, 255, 204, 0.2);
+    }
+    
+    .option-select option {
+      background: var(--card-bg);
+      color: var(--light-text);
+    }
+    
+    /* Buy Button */
+    .buy-btn {
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      color: var(--dark-bg);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .buy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-primary);
+      background: linear-gradient(to right, var(--secondary), #ff9800);
+    }
+    
+    .buy-btn i {
+      font-size: 1.2rem;
     }
     
     /* Product Badge */
@@ -244,6 +326,159 @@
       font-weight: bold;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(0, 255, 204, 0.3);
+    }
+    
+    /* Cart Modal */
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      backdrop-filter: blur(5px);
+    }
+    
+    .cart-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 12px;
+      padding: 30px;
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .cart-header h2 {
+      color: var(--primary);
+      margin: 0;
+    }
+    
+    .close-cart {
+      background: none;
+      border: none;
+      color: var(--gray-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-cart:hover {
+      color: var(--primary);
+    }
+    
+    .cart-items {
+      margin-bottom: 20px;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .cart-item-info h4 {
+      margin: 0 0 5px;
+      color: var(--light-text);
+    }
+    
+    .cart-item-info p {
+      margin: 0;
+      color: var(--gray-text);
+      font-size: 0.9rem;
+    }
+    
+    .cart-item-price {
+      color: var(--secondary);
+      font-weight: bold;
+    }
+    
+    .remove-item {
+      background: rgba(255, 0, 0, 0.2);
+      color: #ff4444;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .remove-item:hover {
+      background: rgba(255, 0, 0, 0.3);
+    }
+    
+    .cart-total {
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 20px 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .cart-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .cart-btn-action {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .clear-cart {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light-text);
+    }
+    
+    .clear-cart:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .checkout-btn {
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      color: var(--dark-bg);
+    }
+    
+    .checkout-btn:hover {
+      box-shadow: var(--glow-primary);
+    }
+    
+    /* Empty Cart */
+    .cart-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--gray-text);
+    }
+    
+    .cart-empty i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      opacity: 0.5;
     }
     
     /* Scrollbar */
@@ -324,6 +559,11 @@
         gap: 20px;
         padding: 20px 15px;
       }
+      
+      .cart-content {
+        width: 95%;
+        padding: 20px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -349,6 +589,14 @@
       
       .product-container {
         grid-template-columns: 1fr;
+      }
+      
+      .cart-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
       }
     }
     
@@ -395,63 +643,98 @@
 
 <!-- List Produk -->
 <div class="product-container">
+  <!-- Panel Pterodactyl -->
   <div class="product">
     <div class="product-badge">🔥 TERLARIS</div>
     <img alt="Panel Pterodactyl" src="https://img1.pixhost.to/images/7302/623164641_uploaded_image.jpg"/>
     <h3>PANEL PTERODACTYL</h3>
     <p>
-      <span class="highlight">• PANEL 5GB</span> 1.000<br>
-      <span class="highlight">• PANEL 6GB</span> 2.000<br>
-      <span class="highlight">• PANEL 7GB</span> 3.000<br>
-      <span class="highlight">• PANEL 8GB</span> 4.000<br>
-      <span class="highlight">• PANEL 9GB</span> 5.000<br>
-      <span class="highlight">• PANEL 10GB</span> 6.000<br>
-      <span class="highlight">• PANEL UNLIMITED</span> 7.000<br>
-      <br>
+      Panel Pterodactyl berkualitas tinggi dengan garansi permanen dan anti problem.
+    </p>
+    
+    <div class="product-options">
+      <div class="option-group">
+        <label for="panel-type">Pilih Paket:</label>
+        <select class="option-select" id="panel-type-1" data-product="PANEL PTERODACTYL">
+          <option value="6GB - Rp 1.000">6GB - Rp 1.000</option>
+          <option value="7GB - Rp 2.000">7GB - Rp 2.000</option>
+          <option value="8GB - Rp 3.000">8GB - Rp 3.000</option>
+          <option value="9GB - Rp 3.500">9GB - Rp 3.500</option>
+          <option value="10GB - Rp 4.000">10GB - Rp 4.000</option>
+          <option value="UNLIMITED - Rp 5.000">UNLIMITED - Rp 5.000</option>
+        </select>
+      </div>
+    </div>
+    
+    <p>
       <span class="highlight">KEUNTUNGAN?</span><br>
       <span class="emoji">✅</span> permanen<br>
       <span class="emoji">✅</span> Anti pt pt<br>
       <span class="emoji">✅</span> Anti delay<br>
       <span class="emoji">✅</span> Anti rusuh
     </p>
-    <div class="price">Rp 1.000 - 7.000</div>
+    <div class="price">Rp 1.000 - 5.000</div>
+    <button class="buy-btn" data-product-id="1" data-product-name="PANEL PTERODACTYL">
+      <i>🛒</i> Tambah ke Keranjang
+    </button>
   </div>
 
+  <!-- Website -->
   <div class="product">
     <div class="product-badge">🌐 WEBSITE</div>
     <img alt="Jasa Pembuatan Website" src="https://img1.pixhost.to/images/7302/623164789_uploaded_image.jpg"/>
     <h3>JASA PEMBUATAN WEBSITE PEMBAYARAN</h3>
     <p>
+      Website pembayaran lengkap dengan semua fitur pembayaran digital populer.
+    </p>
+    
+    <div class="product-options">
+      <div class="option-group">
+        <label for="website-type">Pilih Fitur:</label>
+        <select class="option-select" id="website-type-2" data-product="JASA PEMBUATAN WEBSITE">
+          <option value="Basic - Rp 5.000">Basic - Rp 5.000</option>
+          <option value="Pro (Domain Custom) - Rp 10.000">Pro (Domain Custom) - Rp 10.000</option>
+          <option value="Premium (Full Custom) - Rp 15.000">Premium (Full Custom) - Rp 15.000</option>
+        </select>
+      </div>
+    </div>
+    
+    <p>
       <span class="emoji">✅</span> Full fitur pembayaran (DANA, OVO, GOPAY, QRIS)<br>
       <span class="emoji">✅</span> Halaman loading<br>
       <span class="emoji">✅</span> Animasi modern + UI glowing<br>
-      <span class="emoji">✅</span> Channel WA, Telegram, Testimoni lengkap<br>
-      <span class="emoji">✅</span> Bisa request nama domain/tautan<br>
-      <span class="emoji">✅</span> Copy nomor otomatis<br>
-      <span class="emoji">✅</span> Siap pakai & bisa custom nama<br>
       <span class="emoji">✅</span> TERIMA JADI, TINGGAL PAKAI
     </p>
-    <div class="price">Rp 5.000</div>
+    <div class="price">Rp 5.000 - 15.000</div>
+    <button class="buy-btn" data-product-id="2" data-product-name="JASA PEMBUATAN WEBSITE">
+      <i>🛒</i> Tambah ke Keranjang
+    </button>
   </div>
 
+  <!-- Boost Sosmed -->
   <div class="product">
     <div class="product-badge">🚀 BOOST</div>
     <img alt="Boost Sosmed" src="https://img1.pixhost.to/images/7302/623164793_uploaded_image.jpg"/>
     <h3>BOOST SOSMED</h3>
     <p>
-      <span class="highlight">TIKTOK</span><br>
-      • Followers per 100: 5.000<br>
-      • Like per 1.000: 5.000<br>
-      • Views per 1.000: 5.000<br>
-      <br>
-      <span class="highlight">INSTAGRAM</span><br>
-      • Followers per 100: 5.000<br>
-      • Like per 1.000: 5.000<br>
-      <br>
-      <span class="highlight">YOUTUBE</span><br>
-      • Subscribe per 100: 5.000<br>
-      • Views per 1.000: 15.000<br>
-      <br>
+      Tingkatkan engagement media sosial Anda dengan layanan boost terpercaya.
+    </p>
+    
+    <div class="product-options">
+      <div class="option-group">
+        <label for="boost-platform">Platform:</label>
+        <select class="option-select" id="boost-platform-3" data-product="BOOST SOSMED">
+          <option value="TIKTOK Followers - Rp 5.000">TIKTOK Followers - Rp 5.000</option>
+          <option value="TIKTOK Likes - Rp 5.000">TIKTOK Likes - Rp 5.000</option>
+          <option value="TIKTOK Views - Rp 5.000">TIKTOK Views - Rp 5.000</option>
+          <option value="INSTAGRAM Followers - Rp 5.000">INSTAGRAM Followers - Rp 5.000</option>
+          <option value="YOUTUBE Subscribers - Rp 5.000">YOUTUBE Subscribers - Rp 5.000</option>
+          <option value="YOUTUBE Views - Rp 15.000">YOUTUBE Views - Rp 15.000</option>
+        </select>
+      </div>
+    </div>
+    
+    <p>
       <span class="highlight">KEUNTUNGAN?</span><br>
       <span class="emoji">•</span> All aman 💯<br>
       <span class="emoji">•</span> Garansi 3 hari<br>
@@ -459,39 +742,35 @@
       <span class="emoji">•</span> Tidak perlu data akun
     </p>
     <div class="price">Rp 5.000 - 15.000</div>
+    <button class="buy-btn" data-product-id="3" data-product-name="BOOST SOSMED">
+      <i>🛒</i> Tambah ke Keranjang
+    </button>
   </div>
 
+  <!-- NOKOS -->
   <div class="product">
     <div class="product-badge">📱 NOKOS</div>
     <img alt="NOKOS WhatsApp" src="https://img1.pixhost.to/images/7304/623187306_uploaded_image.jpg"/>
     <h3>NOKOS/NOMOR KOSONG WHATSAPP</h3>
     <p>
-      <span class="emoji">🇮🇩</span> Indonesia : 5.000<br>
-      <span class="emoji">🇵🇭</span> Filipina : 6.000<br>
-      <span class="emoji">🇻🇳</span> Vietnam : 7.000<br>
-      <span class="emoji">🇭🇰</span> Hongkong: 8.000<br>
-      <span class="emoji">🇱🇦</span> Laos: 8.000<br>
-      <span class="emoji">🇹🇭</span> Thailand : 10.000<br>
-      <span class="emoji">🇲🇾</span> Malaysia : 12.000<br>
-      <span class="emoji">🇨🇦</span> Canada : 15.000<br>
-      <br>
-      <span class="highlight">Semua nomor siap pakai untuk WhatsApp</span>
+      Nomor kosong siap pakai untuk WhatsApp dari berbagai negara.
     </p>
-    <div class="price">Rp 5.000 - 15.000</div>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer>
-  <p>© 2025 Bimxyz official. All rights reserved.</p>
-  <p>Layanan digital terpercaya sejak 2023</p>
-  <div class="social-links">
-    <a href="#" title="WhatsApp">📱</a>
-    <a href="#" title="Telegram">✈️</a>
-    <a href="#" title="Instagram">📸</a>
-    <a href="#" title="Email">📧</a>
-  </div>
-</footer>
-
-</body>
-    </html>
+    
+    <div class="product-options">
+      <div class="option-group">
+        <label for="nokos-country">Pilih Negara:</label>
+        <select class="option-select" id="nokos-country-4" data-product="NOKOS WHATSAPP">
+          <option value="Indonesia - Rp 5.000">Indonesia - Rp 5.000</option>
+          <option value="Filipina - Rp 6.000">Filipina - Rp 6.000</option>
+          <option value="Vietnam - Rp 7.000">Vietnam - Rp 7.000</option>
+          <option value="Hongkong - Rp 8.000">Hongkong - Rp 8.000</option>
+          <option value="Laos - Rp 8.000">Laos - Rp 8.000</option>
+          <option value="Thailand - Rp 10.000">Thailand - Rp 10.000</option>
+          <option value="Malaysia - Rp 12.000">Malaysia - Rp 12.000</option>
+          <option value="Canada - Rp 15.000">Canada - Rp 15.000</option>
+        </select>
+      </div>
+    </div>
+    
+    <p>
+      <span class="highlight">Semua nomor siap pakai untuk WhatsApp</span><br
