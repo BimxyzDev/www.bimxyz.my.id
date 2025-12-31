@@ -774,3 +774,272 @@
     
     <p>
       <span class="highlight">Semua nomor siap pakai untuk WhatsApp</span><br
+ <span class="emoji">✅</span> Nomor aktif 100%<br>
+      <span class="emoji">✅</span> Bisa verifikasi WhatsApp<br>
+      <span class="emoji">✅</span> Garansi 24 jam
+    </p>
+    <div class="price">Rp 5.000 - 15.000</div>
+    <button class="buy-btn" data-product-id="4" data-product-name="NOKOS WHATSAPP">
+      <i>🛒</i> Tambah ke Keranjang
+    </button>
+  </div>
+</div>
+
+<!-- Cart Button -->
+<button class="cart-btn" id="cartToggle">
+  🛒
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- Cart Modal -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-content">
+    <div class="cart-header">
+      <h2>🛒 Keranjang Belanja</h2>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be inserted here -->
+      <div class="cart-empty" id="emptyCart">
+        <div>📭</div>
+        <p>Keranjang belanja masih kosong</p>
+        <p>Tambahkan produk untuk memulai pembelian</p>
+      </div>
+    </div>
+    
+    <div class="cart-total" id="cartTotal" style="display: none;">
+      Total: <span id="totalAmount">Rp 0</span>
+    </div>
+    
+    <div class="cart-actions" id="cartActions" style="display: none;">
+      <button class="cart-btn-action clear-cart" id="clearCart">
+        ❌ Kosongkan
+      </button>
+      <button class="cart-btn-action checkout-btn" id="checkoutBtn">
+        💬 Chat WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Bimxyz official. All rights reserved.</p>
+  <p>Layanan digital terpercaya sejak 2023</p>
+  <div class="social-links">
+    <a href="#" title="WhatsApp">📱</a>
+    <a href="#" title="Telegram">✈️</a>
+    <a href="#" title="Instagram">📸</a>
+    <a href="#" title="Email">📧</a>
+  </div>
+</footer>
+
+<script>
+  // Cart System
+  let cart = JSON.parse(localStorage.getItem('bimxyz_cart')) || [];
+  
+  // DOM Elements
+  const cartToggle = document.getElementById('cartToggle');
+  const cartModal = document.getElementById('cartModal');
+  const closeCart = document.getElementById('closeCart');
+  const cartCount = document.getElementById('cartCount');
+  const cartItems = document.getElementById('cartItems');
+  const emptyCart = document.getElementById('emptyCart');
+  const cartTotal = document.getElementById('cartTotal');
+  const totalAmount = document.getElementById('totalAmount');
+  const cartActions = document.getElementById('cartActions');
+  const clearCartBtn = document.getElementById('clearCart');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  
+  // Update cart count
+  function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    localStorage.setItem('bimxyz_cart', JSON.stringify(cart));
+  }
+  
+  // Format currency
+  function formatCurrency(amount) {
+    return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+  
+  // Calculate total
+  function calculateTotal() {
+    return cart.reduce((total, item) => {
+      const price = parseInt(item.price.replace(/\D/g, ''));
+      return total + (price * item.quantity);
+    }, 0);
+  }
+  
+  // Render cart items
+  function renderCartItems() {
+    if (cart.length === 0) {
+      emptyCart.style.display = 'block';
+      cartTotal.style.display = 'none';
+      cartActions.style.display = 'none';
+      return;
+    }
+    
+    emptyCart.style.display = 'none';
+    cartTotal.style.display = 'block';
+    cartActions.style.display = 'flex';
+    
+    cartItems.innerHTML = '';
+    
+    cart.forEach((item, index) => {
+      const itemElement = document.createElement('div');
+      itemElement.className = 'cart-item';
+      itemElement.innerHTML = `
+        <div class="cart-item-info">
+          <h4>${item.product}</h4>
+          <p>${item.variant}</p>
+          <small>Qty: ${item.quantity}</small>
+        </div>
+        <div class="cart-item-price">${item.price}</div>
+        <button class="remove-item" data-index="${index}">Hapus</button>
+      `;
+      cartItems.appendChild(itemElement);
+    });
+    
+    // Add event listeners to remove buttons
+    document.querySelectorAll('.remove-item').forEach(button => {
+      button.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-index'));
+        cart.splice(index, 1);
+        renderCartItems();
+        updateCartCount();
+      });
+    });
+    
+    // Update total
+    totalAmount.textContent = formatCurrency(calculateTotal());
+  }
+  
+  // Add to cart function
+  function addToCart(productId, productName) {
+    const selectElement = document.querySelector(`#${getSelectId(productId)}`);
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const [variant, price] = selectedOption.value.split(' - ');
+    
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => 
+      item.product === productName && item.variant === variant
+    );
+    
+    if (existingItemIndex > -1) {
+      cart[existingItemIndex].quantity += 1;
+    } else {
+      cart.push({
+        id: productId,
+        product: productName,
+        variant: variant,
+        price: price,
+        quantity: 1
+      });
+    }
+    
+    // Show confirmation
+    alert(`✅ ${productName} - ${variant} telah ditambahkan ke keranjang!`);
+    
+    // Update UI
+    renderCartItems();
+    updateCartCount();
+  }
+  
+  // Get select ID based on product ID
+  function getSelectId(productId) {
+    const selectIds = {
+      1: 'panel-type-1',
+      2: 'website-type-2',
+      3: 'boost-platform-3',
+      4: 'nokos-country-4'
+    };
+    return selectIds[productId];
+  }
+  
+  // Clear cart
+  function clearCart() {
+    if (confirm('Apakah Anda yakin ingin mengosongkan keranjang?')) {
+      cart = [];
+      renderCartItems();
+      updateCartCount();
+    }
+  }
+  
+  // Generate WhatsApp message
+  function generateWhatsAppMessage() {
+    const phoneNumber = '6285607920486';
+    let message = '*INFO PEMBELIAN BIMXYZ OFFICIAL*\n\n';
+    
+    cart.forEach((item, index) => {
+      message += `*Produk ${index + 1}:* ${item.product}\n`;
+      message += `*Varian:* ${item.variant}\n`;
+      message += `*Harga:* ${item.price}\n`;
+      message += `*Jumlah:* ${item.quantity}\n\n`;
+    });
+    
+    message += `*TOTAL: ${formatCurrency(calculateTotal())}*\n\n`;
+    message += `*Waktu:* ${new Date().toLocaleString('id-ID')}\n\n`;
+    message += '---\n';
+    message += 'Silakan konfirmasi pembelian ini dan lakukan pembayaran.';
+    
+    return encodeURIComponent(message);
+  }
+  
+  // Checkout function
+  function checkout() {
+    if (cart.length === 0) {
+      alert('Keranjang belanja kosong!');
+      return;
+    }
+    
+    const message = generateWhatsAppMessage();
+    const whatsappUrl = `https://wa.me/6285607920486?text=${message}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
+    // Optional: Clear cart after checkout
+    // cart = [];
+    // renderCartItems();
+    // updateCartCount();
+    // cartModal.style.display = 'none';
+  }
+  
+  // Event Listeners
+  cartToggle.addEventListener('click', () => {
+    cartModal.style.display = 'block';
+    renderCartItems();
+  });
+  
+  closeCart.addEventListener('click', () => {
+    cartModal.style.display = 'none';
+  });
+  
+  // Close modal when clicking outside
+  cartModal.addEventListener('click', (e) => {
+    if (e.target === cartModal) {
+      cartModal.style.display = 'none';
+    }
+  });
+  
+  clearCartBtn.addEventListener('click', clearCart);
+  checkoutBtn.addEventListener('click', checkout);
+  
+  // Add to cart buttons
+  document.querySelectorAll('.buy-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const productId = this.getAttribute('data-product-id');
+      const productName = this.getAttribute('data-product-name');
+      addToCart(productId, productName);
+    });
+  });
+  
+  // Initialize
+  updateCartCount();
+  renderCartItems();
+</script>
+
+</body>
+          </html>
