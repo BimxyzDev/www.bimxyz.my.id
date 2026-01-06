@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Deposit QRIS</title>
+
+<style>
+body{
+  background:#0d0d14;
+  color:white;
+  font-family:Arial;
+  padding:20px;
+}
+.card{
+  background:#181826;
+  padding:20px;
+  border-radius:14px;
+  max-width:460px;
+  margin:auto;
+}
+input,button{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:8px;
+}
+input{
+  background:#242442;
+  color:white;
+}
+button{
+  background:#6f4bff;
+  cursor:pointer;
+}
+#qr img{
+  width:100%;
+  margin-top:10px;
+}
+pre{
+  white-space:pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Deposit QRIS Otomatis</h2>
+
+<label>Nominal</label>
+<input id="nominal" type="number" placeholder="min 2000">
+
+<button onclick="buat()">Buat Deposit</button>
+
+<div id="qr"></div>
+
+<pre id="log"></pre>
+
+</div>
+
+
+<script>
+
+const API = "/api/server"; // vercel auto route
+
+async function post(data){
+  let res = await fetch(API,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify(data)
+  });
+
+  return await res.json();
+}
+
+async function buat(){
+
+  let nominal = Number(document.getElementById("nominal").value);
+  let reff = "DEP" + Date.now();
+
+  let result = await post({
+    action:"create",
+    nominal,
+    reff_id: reff
+  });
+
+  document.getElementById("log").textContent =
+    JSON.stringify(result,null,2);
+
+  if(result?.data?.qr_image){
+
+    window.depositId = result.data.id;
+
+    document.getElementById("qr").innerHTML = `
+      <h3>Scan QRIS</h3>
+      <img src="${result.data.qr_image}">
+      <p>Status: ${result.data.status}</p>
+      <button onclick="cek()">Cek Status</button>
+      <button onclick="cancel()">Batalkan</button>
+    `;
+  }
+}
+
+async function cek(){
+  let r = await post({
+    action:"status",
+    id: window.depositId
+  });
+
+  document.getElementById("log").textContent =
+    JSON.stringify(r,null,2);
+}
+
+async function cancel(){
+  let r = await post({
+    action:"cancel",
+    id: window.depositId
+  });
+
+  document.getElementById("log").textContent =
+    JSON.stringify(r,null,2);
+}
+
+</script>
+
+</body>
+  </html>
