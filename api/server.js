@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
 
     switch (action) {
       case 'create':
-        endpoint = '/deposit/create';
+        endpoint = '/deposit';
         payload = {
           ...payload,
           reff_id: requestData.reff_id || `DEP${Date.now()}`,
