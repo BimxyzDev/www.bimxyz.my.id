@@ -286,6 +286,63 @@ body {
   box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
 }
 
+/* ========== PANEL OPTIONS ========== */
+.panel-options {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-options h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.option-item {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.option-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+}
+
+.option-item.selected {
+  background: rgba(67, 97, 238, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.3);
+}
+
+.option-item .ram-size {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.option-item .ram-price {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
 /* ========== FORMS ========== */
 .purchase-form {
   display: none;
@@ -379,6 +436,10 @@ body {
     grid-template-columns: 1fr;
   }
   
+  .options-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
   .container {
     padding: 10px;
   }
@@ -395,6 +456,10 @@ body {
   
   .card-price {
     font-size: 2rem;
+  }
+  
+  .options-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
@@ -452,16 +517,62 @@ body {
     <div class="pricing-card">
       <div class="card-header unlimited">
         <div class="card-badge">POPULAR</div>
-        <h3>Panel Unlimited</h3>
-        <div class="card-price">Rp 5.000</div>
-        <div class="card-period">One-time Payment</div>
+        <h3>Panel RAM Options</h3>
+        <div class="card-price">Rp 1.000</div>
+        <div class="card-period">Mulai dari</div>
       </div>
       <div class="card-image">
         <img src="https://img1.pixhost.to/images/10699/668961714_ochobot.jpg" alt="Panel Unlimited">
       </div>
       <div class="card-body">
+        <!-- Panel Options -->
+        <div class="panel-options">
+          <h4><i class="fas fa-memory"></i> Pilih Kapasitas RAM</h4>
+          <div class="options-grid" id="ramOptions">
+            <div class="option-item selected" data-size="2GB" data-price="1000">
+              <div class="ram-size">2GB</div>
+              <div class="ram-price">Rp 1.000</div>
+            </div>
+            <div class="option-item" data-size="3GB" data-price="2000">
+              <div class="ram-size">3GB</div>
+              <div class="ram-price">Rp 2.000</div>
+            </div>
+            <div class="option-item" data-size="4GB" data-price="3000">
+              <div class="ram-size">4GB</div>
+              <div class="ram-price">Rp 3.000</div>
+            </div>
+            <div class="option-item" data-size="5GB" data-price="4000">
+              <div class="ram-size">5GB</div>
+              <div class="ram-price">Rp 4.000</div>
+            </div>
+            <div class="option-item" data-size="6GB" data-price="5000">
+              <div class="ram-size">6GB</div>
+              <div class="ram-price">Rp 5.000</div>
+            </div>
+            <div class="option-item" data-size="7GB" data-price="6000">
+              <div class="ram-size">7GB</div>
+              <div class="ram-price">Rp 6.000</div>
+            </div>
+            <div class="option-item" data-size="8GB" data-price="7000">
+              <div class="ram-size">8GB</div>
+              <div class="ram-price">Rp 7.000</div>
+            </div>
+            <div class="option-item" data-size="9GB" data-price="8000">
+              <div class="ram-size">9GB</div>
+              <div class="ram-price">Rp 8.000</div>
+            </div>
+            <div class="option-item" data-size="10GB" data-price="9000">
+              <div class="ram-size">10GB</div>
+              <div class="ram-price">Rp 9.000</div>
+            </div>
+            <div class="option-item" data-size="UNLIMITED" data-price="10000">
+              <div class="ram-size">UNLIMITED</div>
+              <div class="ram-price">Rp 10.000</div>
+            </div>
+          </div>
+        </div>
+
         <ul class="features-list">
-          <li><i class="fas fa-check"></i> RAM/Disk/CPU Unlimited</li>
           <li><i class="fas fa-check"></i> Anti lag & anti limit</li>
           <li><i class="fas fa-check"></i> Cocok bot berat / multi-device</li>
           <li><i class="fas fa-check"></i> Aktif 20-30 hari</li>
@@ -476,6 +587,12 @@ body {
             <label for="unliUsername"><i class="fas fa-user"></i> Username</label>
             <input type="text" id="unliUsername" placeholder="Masukkan username">
           </div>
+          <div class="form-group">
+            <label><i class="fas fa-memory"></i> Paket Terpilih</label>
+            <div style="padding: 12px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+              <span id="selectedPackage">2GB - Rp 1.000</span>
+            </div>
+          </div>
           <button class="buy-btn" onclick="beliUnlimited()">
             <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
           </button>
@@ -487,8 +604,8 @@ body {
     <div class="pricing-card">
       <div class="card-header user">
         <div class="card-badge">RECOMMENDED</div>
-        <h3>Akses User reseller</h3>
-        <div class="card-price">Rp 8.000</div>
+        <h3>Akses User Reseller</h3>
+        <div class="card-price">Rp 12.000</div>
         <div class="card-period">Full Akses Web Panel</div>
       </div>
       <div class="card-image">
@@ -527,7 +644,7 @@ body {
       <div class="card-header admin">
         <div class="card-badge">PREMIUM</div>
         <h3>Akses Admin Reseller Panel</h3>
-        <div class="card-price">Rp 12.000</div>
+        <div class="card-price">Rp 15.000</div>
         <div class="card-period">Sultan Features</div>
       </div>
       <div class="card-image">
@@ -564,6 +681,8 @@ body {
 
 <script>
 const admin = "6285607920486";
+let selectedRamSize = "2GB";
+let selectedRamPrice = "1000";
 
 // Toggle form visibility
 function toggleForm(type) {
@@ -573,13 +692,52 @@ function toggleForm(type) {
   if (type === 'unlimited') {
     document.getElementById('formUnlimited').style.display = 'block';
     document.getElementById('unliUsername').focus();
+    // Update selected package display
+    document.getElementById('selectedPackage').textContent = 
+      `${selectedRamSize} - Rp ${parseInt(selectedRamPrice).toLocaleString('id-ID')}`;
   } else if (type === 'user') {
     document.getElementById('formUser').style.display = 'block';
     document.getElementById('username').focus();
   }
 }
 
-// Pembelian Unlimited
+// Handle RAM selection
+document.addEventListener('DOMContentLoaded', function() {
+  const options = document.querySelectorAll('.option-item');
+  
+  options.forEach(option => {
+    option.addEventListener('click', function() {
+      // Remove selected class from all options
+      options.forEach(opt => opt.classList.remove('selected'));
+      
+      // Add selected class to clicked option
+      this.classList.add('selected');
+      
+      // Update selected values
+      selectedRamSize = this.dataset.size;
+      selectedRamPrice = this.dataset.price;
+      
+      // Update card price display
+      const cardPrice = document.querySelector('.unlimited .card-price');
+      cardPrice.textContent = `Rp ${parseInt(selectedRamPrice).toLocaleString('id-ID')}`;
+    });
+  });
+  
+  // Add animation to cards on load
+  const cards = document.querySelectorAll('.pricing-card');
+  cards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 100 * index);
+  });
+});
+
+// Pembelian Unlimited/RAM Options
 function beliUnlimited() {
   const username = document.getElementById('unliUsername').value.trim();
   
@@ -589,11 +747,11 @@ function beliUnlimited() {
     return;
   }
   
-  const message = `*🏷️ PEMBELIAN PANEL UNLIMITED*
+  const message = `*🏷️ PEMBELIAN PANEL RAM*
   
 *Username:* ${username}
-*Harga:* Rp 5.000
-*Paket:* Panel Unlimited RAM
+*Paket:* ${selectedRamSize}
+*Harga:* Rp ${parseInt(selectedRamPrice).toLocaleString('id-ID')}
   
 *Metode Pembayaran:* QRIS`;
   
@@ -614,7 +772,7 @@ function beliUser() {
   
 *Username:* ${username}
 *Password:* ${password}
-*Harga:* Rp 8.000
+*Harga:* Rp 12.000
 *Paket:* Akses Reseller Panel
   
 *Metode Pembayaran:* QRIS`;
@@ -627,7 +785,7 @@ function beliAdmin() {
   const message = `*🏷️ PEMBELIAN AKSES ADMIN RESELLER PANEL*
   
 *Paket:* Akses Admin Reseller panel
-*Harga:* Rp 12.000
+*Harga:* Rp 15.000
 *Fitur:* Full Admin Access
   
 *Metode Pembayaran:* QRIS`;
@@ -644,22 +802,7 @@ document.addEventListener('click', function(event) {
     forms.forEach(form => form.style.display = 'none');
   }
 });
-
-// Add animation to cards on load
-document.addEventListener('DOMContentLoaded', function() {
-  const cards = document.querySelectorAll('.pricing-card');
-  cards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, 100 * index);
-  });
-});
 </script>
 
 </body>
-  </html>
+              </html>
