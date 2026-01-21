@@ -464,7 +464,8 @@ body {
 }
 </style>
 </head>
-<body>
+
+  <body>
 
 <div class="container">
   <!-- HEADER -->
@@ -518,7 +519,7 @@ body {
       <div class="card-header unlimited">
         <div class="card-badge">POPULAR</div>
         <h3>Panel RAM Options</h3>
-        <div class="card-price">Rp 1.000</div>
+        <div class="card-price">Rp 5.000</div>
         <div class="card-period">Mulai dari</div>
       </div>
       <div class="card-image">
@@ -529,45 +530,33 @@ body {
         <div class="panel-options">
           <h4><i class="fas fa-memory"></i> Pilih Kapasitas RAM</h4>
           <div class="options-grid" id="ramOptions">
-            <div class="option-item selected" data-size="2GB" data-price="1000">
-              <div class="ram-size">2GB</div>
-              <div class="ram-price">Rp 1.000</div>
-            </div>
-            <div class="option-item" data-size="3GB" data-price="2000">
-              <div class="ram-size">3GB</div>
-              <div class="ram-price">Rp 2.000</div>
-            </div>
-            <div class="option-item" data-size="4GB" data-price="3000">
-              <div class="ram-size">4GB</div>
-              <div class="ram-price">Rp 3.000</div>
-            </div>
-            <div class="option-item" data-size="5GB" data-price="4000">
+            <div class="option-item selected" data-size="5GB" data-price="5000">
               <div class="ram-size">5GB</div>
-              <div class="ram-price">Rp 4.000</div>
-            </div>
-            <div class="option-item" data-size="6GB" data-price="5000">
-              <div class="ram-size">6GB</div>
               <div class="ram-price">Rp 5.000</div>
             </div>
-            <div class="option-item" data-size="7GB" data-price="6000">
-              <div class="ram-size">7GB</div>
+            <div class="option-item" data-size="6GB" data-price="6000">
+              <div class="ram-size">6GB</div>
               <div class="ram-price">Rp 6.000</div>
             </div>
-            <div class="option-item" data-size="8GB" data-price="7000">
-              <div class="ram-size">8GB</div>
+            <div class="option-item" data-size="7GB" data-price="7000">
+              <div class="ram-size">7GB</div>
               <div class="ram-price">Rp 7.000</div>
             </div>
-            <div class="option-item" data-size="9GB" data-price="8000">
-              <div class="ram-size">9GB</div>
+            <div class="option-item" data-size="8GB" data-price="8000">
+              <div class="ram-size">8GB</div>
               <div class="ram-price">Rp 8.000</div>
             </div>
-            <div class="option-item" data-size="10GB" data-price="9000">
-              <div class="ram-size">10GB</div>
+            <div class="option-item" data-size="9GB" data-price="9000">
+              <div class="ram-size">9GB</div>
               <div class="ram-price">Rp 9.000</div>
             </div>
-            <div class="option-item" data-size="UNLIMITED" data-price="10000">
-              <div class="ram-size">UNLIMITED</div>
+            <div class="option-item" data-size="10GB" data-price="10000">
+              <div class="ram-size">10GB</div>
               <div class="ram-price">Rp 10.000</div>
+            </div>
+            <div class="option-item" data-size="UNLIMITED" data-price="15000">
+              <div class="ram-size">UNLIMITED</div>
+              <div class="ram-price">Rp 15.000</div>
             </div>
           </div>
         </div>
@@ -590,7 +579,7 @@ body {
           <div class="form-group">
             <label><i class="fas fa-memory"></i> Paket Terpilih</label>
             <div style="padding: 12px; background: rgba(255,255,255,0.1); border-radius: 8px;">
-              <span id="selectedPackage">2GB - Rp 1.000</span>
+              <span id="selectedPackage">5GB - Rp 5.000</span>
             </div>
           </div>
           <button class="buy-btn" onclick="beliUnlimited()">
@@ -604,7 +593,7 @@ body {
     <div class="pricing-card">
       <div class="card-header user">
         <div class="card-badge">RECOMMENDED</div>
-        <h3>Akses User Reseller</h3>
+        <h3>Akses Reseller Panel</h3>
         <div class="card-price">Rp 12.000</div>
         <div class="card-period">Full Akses Web Panel</div>
       </div>
@@ -612,6 +601,21 @@ body {
         <img src="https://img1.pixhost.to/images/10608/667497129_ochobot.jpg" alt="Akses User">
       </div>
       <div class="card-body">
+        <!-- Duration Options -->
+        <div class="duration-options">
+          <h4><i class="fas fa-calendar-alt"></i> Pilih Durasi Akses</h4>
+          <div class="duration-grid" id="durationOptions">
+            <div class="duration-item selected" data-days="30" data-price="12000">
+              <div class="days">30 Hari</div>
+              <div class="duration-price">Rp 12.000</div>
+            </div>
+            <div class="duration-item" data-days="60" data-price="25000">
+              <div class="days">60 Hari</div>
+              <div class="duration-price">Rp 25.000</div>
+            </div>
+          </div>
+        </div>
+
         <ul class="features-list">
           <li><i class="fas fa-check"></i> Akses akun cpanel via website</li>
           <li><i class="fas fa-check"></i> Stabil & kencang 24/7</li>
@@ -632,37 +636,16 @@ body {
             <label for="password"><i class="fas fa-key"></i> Password</label>
             <input type="text" id="password" placeholder="Masukkan password">
           </div>
+          <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> Durasi Terpilih</label>
+            <div style="padding: 12px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+              <span id="selectedDuration">30 Hari - Rp 12.000</span>
+            </div>
+          </div>
           <button class="buy-btn" onclick="beliUser()">
             <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
           </button>
         </div>
-      </div>
-    </div>
-
-    <!-- ADMIN PANEL -->
-    <div class="pricing-card">
-      <div class="card-header admin">
-        <div class="card-badge">PREMIUM</div>
-        <h3>Akses Admin Reseller Panel</h3>
-        <div class="card-price">Rp 15.000</div>
-        <div class="card-period">Sultan Features</div>
-      </div>
-      <div class="card-image">
-        <img src="https://img1.pixhost.to/images/10729/669388407_ochobot.jpg" alt="Akses Admin">
-      </div>
-      <div class="card-body">
-        <ul class="features-list">
-          <li><i class="fas fa-check"></i> Full akses admin website cpanel</li>
-          <li><i class="fas fa-check"></i> Bikin akun reseller sendiri</li>
-          <li><i class="fas fa-check"></i> Open reseller panel</li>
-          <li><i class="fas fa-check"></i> Management user lengkap</li>
-          <li><i class="fas fa-check"></i> Bisa jualan panel & bot</li>
-          <li><i class="fas fa-check"></i> Priority support 24/7</li>
-          <li><i class="fas fa-check"></i> Access to all features</li>
-        </ul>
-        <button class="buy-btn" onclick="beliAdmin()">
-          <i class="fas fa-crown"></i> Beli Sekarang
-        </button>
       </div>
     </div>
   </div>
@@ -681,8 +664,10 @@ body {
 
 <script>
 const admin = "6285607920486";
-let selectedRamSize = "2GB";
-let selectedRamPrice = "1000";
+let selectedRamSize = "5GB";
+let selectedRamPrice = "5000";
+let selectedDuration = "30";
+let selectedDurationPrice = "12000";
 
 // Toggle form visibility
 function toggleForm(type) {
@@ -698,17 +683,21 @@ function toggleForm(type) {
   } else if (type === 'user') {
     document.getElementById('formUser').style.display = 'block';
     document.getElementById('username').focus();
+    // Update selected duration display
+    document.getElementById('selectedDuration').textContent = 
+      `${selectedDuration} Hari - Rp ${parseInt(selectedDurationPrice).toLocaleString('id-ID')}`;
   }
 }
 
 // Handle RAM selection
 document.addEventListener('DOMContentLoaded', function() {
-  const options = document.querySelectorAll('.option-item');
+  // RAM Options
+  const ramOptions = document.querySelectorAll('#ramOptions .option-item');
   
-  options.forEach(option => {
+  ramOptions.forEach(option => {
     option.addEventListener('click', function() {
-      // Remove selected class from all options
-      options.forEach(opt => opt.classList.remove('selected'));
+      // Remove selected class from all ram options
+      ramOptions.forEach(opt => opt.classList.remove('selected'));
       
       // Add selected class to clicked option
       this.classList.add('selected');
@@ -720,6 +709,27 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update card price display
       const cardPrice = document.querySelector('.unlimited .card-price');
       cardPrice.textContent = `Rp ${parseInt(selectedRamPrice).toLocaleString('id-ID')}`;
+    });
+  });
+  
+  // Duration Options
+  const durationOptions = document.querySelectorAll('#durationOptions .duration-item');
+  
+  durationOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      // Remove selected class from all duration options
+      durationOptions.forEach(opt => opt.classList.remove('selected'));
+      
+      // Add selected class to clicked option
+      this.classList.add('selected');
+      
+      // Update selected values
+      selectedDuration = this.dataset.days;
+      selectedDurationPrice = this.dataset.price;
+      
+      // Update card price display
+      const cardPrice = document.querySelector('.user .card-price');
+      cardPrice.textContent = `Rp ${parseInt(selectedDurationPrice).toLocaleString('id-ID')}`;
     });
   });
   
@@ -772,21 +782,9 @@ function beliUser() {
   
 *Username:* ${username}
 *Password:* ${password}
-*Harga:* Rp 12.000
+*Durasi:* ${selectedDuration} Hari
+*Harga:* Rp ${parseInt(selectedDurationPrice).toLocaleString('id-ID')}
 *Paket:* Akses Reseller Panel
-  
-*Metode Pembayaran:* QRIS`;
-  
-  window.open(`https://wa.me/${admin}?text=${encodeURIComponent(message)}`, '_blank');
-}
-
-// Pembelian Admin
-function beliAdmin() {
-  const message = `*🏷️ PEMBELIAN AKSES ADMIN RESELLER PANEL*
-  
-*Paket:* Akses Admin Reseller panel
-*Harga:* Rp 15.000
-*Fitur:* Full Admin Access
   
 *Metode Pembayaran:* QRIS`;
   
@@ -802,7 +800,7 @@ document.addEventListener('click', function(event) {
     forms.forEach(form => form.style.display = 'none');
   }
 });
-</script>
+                </script>
 
 </body>
               </html>
